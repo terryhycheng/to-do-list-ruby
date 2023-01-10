@@ -8,10 +8,18 @@ jobs:
       - image: cimg/ruby:3.0.0
     steps:
       - checkout
-      - run: ruby --version
-      - run: gem install rspec
-      - run: rspec --version
-      - run: rspec
+      - run:
+          name: Checking Ruby Version
+          command: ruby --version
+      - run:
+          name: Installing RSpec
+          command: gem install rspec
+      - run:
+          name: Checking RSpec Version
+          command: rspec --version
+      - run:
+          name: Running Tests
+          command: rspec
 
 workflows:
   my-workflow:
