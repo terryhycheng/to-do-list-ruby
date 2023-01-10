@@ -2,26 +2,19 @@
 
 version: 2.1
 
-workflows:
-  install-test:
-    jobs:
-      - test
-
 jobs:
-  test:
+  install-test:
     docker:
       - image: cimg/ruby:3.0.0
     steps:
       - checkout
-      - run:
-        name: Checking Ruby Version
-        command: ruby --version
-      - run:
-        name: Installing RSpec
-        command: gem install rspec
-      - run:
-        name: Checking RSpec Version
-        command: rspec --version
-      - run:
-        name: Running RSpec tests
-        command: rspec
+      - run: ruby --version
+      - run: gem install rspec
+      - run: rspec --version
+      - run: rspec
+
+workflows:
+  my-workflow:
+    jobs:
+      - install-test
+# VS Code Extension Version: 1.5.1
