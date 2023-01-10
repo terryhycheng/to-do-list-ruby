@@ -1,0 +1,27 @@
+# CircleCI configuration file
+
+version: 2.1
+
+workflows:
+  install-test:
+    jobs:
+      - test
+
+jobs:
+  test:
+    docker:
+      - image: cimg/ruby:3.0.0
+    steps:
+      - checkout
+      - run:
+        name: Checking Ruby Version
+        command: ruby --version
+      - run:
+        name: Installing RSpec
+        command: gem install rspec
+      - run:
+        name: Checking RSpec Version
+        command: rspec --version
+      - run:
+        name: Running RSpec tests
+        command: rspec

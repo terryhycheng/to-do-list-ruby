@@ -1,15 +1,15 @@
 require 'csv'
 
 class Todo
-    def initialize(file_name)
+    def initialize(file_name = "data.csv")
         @file_name = file_name
     end
 
     # Print out all to-dos
     def list
         if !load_todos.empty?
-            load_todos.each do |key, value|
-                puts "#{key}. #{value}"
+            load_todos.each_with_index do |(key,value),index|
+                puts "#{index + 1}. #{value}"
             end
         else
             puts "The list is empty."
